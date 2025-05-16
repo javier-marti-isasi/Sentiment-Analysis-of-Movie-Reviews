@@ -1,0 +1,12 @@
+Classification Report (only_transformer_model):
+              precision    recall  f1-score   support
+
+    NEGATIVE       0.87      0.90      0.89       511
+    POSITIVE       0.90      0.86      0.88       489
+
+    accuracy                           0.88      1000
+   macro avg       0.88      0.88      0.88      1000
+weighted avg       0.88      0.88      0.88      1000
+
+Average inference time per review: 0.0605 seconds
+Total time to evaluate all samples: 60.55 seconds

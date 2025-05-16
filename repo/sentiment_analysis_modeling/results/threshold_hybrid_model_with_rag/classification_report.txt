@@ -1,0 +1,14 @@
+Classification Report (threshold_hybrid_model_with_rag):
+              precision    recall  f1-score   support
+
+    NEGATIVE       0.84      0.89      0.87       511
+    POSITIVE       0.88      0.83      0.85       489
+
+    accuracy                           0.86      1000
+   macro avg       0.86      0.86      0.86      1000
+weighted avg       0.86      0.86      0.86      1000
+
+Average inference time per review: 0.0643 seconds
+Total time to evaluate all samples: 64.28 seconds
+Confidence threshold: 0.99
+RAG was used for 232 samples (23.20% of total)

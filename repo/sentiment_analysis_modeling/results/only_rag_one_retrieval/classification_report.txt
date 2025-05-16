@@ -1,0 +1,12 @@
+Classification Report (only_rag_one_retrieval):
+              precision    recall  f1-score   support
+
+    NEGATIVE       0.62      0.67      0.65       511
+    POSITIVE       0.63      0.58      0.60       489
+
+    accuracy                           0.62      1000
+   macro avg       0.63      0.62      0.62      1000
+weighted avg       0.63      0.62      0.62      1000
+
+Average inference time per review: 0.0211 seconds
+Total time to evaluate all samples: 21.12 seconds
