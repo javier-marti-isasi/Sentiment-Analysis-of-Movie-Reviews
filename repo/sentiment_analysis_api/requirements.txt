@@ -1,0 +1,23 @@
+# Web framework and API dependencies
+fastapi==0.115.9
+uvicorn==0.34.2
+pydantic==2.11.4
+
+# ML model dependencies
+transformers==4.51.3
+sentence-transformers==4.1.0
+#torch==2.7.0+cu118 # GPU version of PyTorch
+#numpy==2.2.5
+#pandas==2.2.3
+#scikit-learn==1.6.1
+
+# Vector database dependencies
+chromadb==1.0.9
+
+# IIS deployment dependencies
+httptools==0.6.4
+watchfiles==1.0.5
+
+# Additional utilities
+requests==2.32.3
+#datasets==3.6.0

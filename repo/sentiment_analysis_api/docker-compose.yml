@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  # Main API service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sentiment-analysis-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./application:/app/application
+      - ./resources:/app/resources
+      - ./model_data:/app/model_data  # For storing downloaded models
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CHROMA_DB_HOST=chromadb
+      - CHROMA_DB_PORT=8000
+    depends_on:
+      - chromadb
+    restart: unless-stopped
+    command: bash -c "sleep 10 && python -m application.utils.populate_chromadb && uvicorn main:app --host 0.0.0.0 --port 8000"
+    # If your application uses GPU, uncomment the following line
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  # Vector database service (ChromaDB)
+  chromadb:
+    image: ghcr.io/chroma-core/chroma:latest
+    container_name: chromadb-sentiment
+    volumes:
+      # Modified to use the local database
+      - ./resources/vectorial_database:/chroma/chroma
+    environment:
+      - ALLOW_RESET=true
+      - ANONYMIZED_TELEMETRY=false
+    ports:
+      - "8001:8000"  # Mapped to 8001 to avoid conflicts with the API
+    restart: unless-stopped
+    # Removed the healthcheck that was causing problems
+
+# Volume chroma_data is removed because we now use bind mount to the local folder
+volumes:
+  model_data:
+    driver: local
+
+networks:
+  default:
+    name: sentiment-analysis-network
+    driver: bridge
